@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Main from './components/Main';
+import Results from './components/Results';
+
+export type filtersType = {
+  location: string;
+  guests: number;
+};
 
 function App() {
+  const [filters, setFilters] = useState<filtersType>({
+    location: 'Helinski, Finland',
+    guests: 0,
+  });
+
+  const updateFilters = (updatedFilters: filtersType) => {
+    setFilters({ ...updatedFilters });
+    return;
+  };
+
   return (
     <div className="">
-      <Header />
-      <Main />
+      <Header filters={filters} updateFilters={updateFilters} />
+      <Results filters={filters} />
       <Footer />
     </div>
   );
