@@ -25,8 +25,10 @@ const searchIcon = (
 
 function Search({ filters }: SearchProps) {
   return (
-    <div className="border rounded-xl flex mt-8 w-4/5 divide-x text-sm">
-      <div className="py-4 w-2/5 text-center">{filters.location}</div>
+    <div className="border border-gray-100 rounded-xl flex my-8 w-4/5 divide-x divide-gray-100 text-sm shadow">
+      <div className="py-4 w-2/5 text-center">
+        {filters.location.city}, {filters.location.country}
+      </div>
       <input className="py-4 w-2/5 text-center" placeholder="Add Guests" />
       <button className="py-4 px-2 w-1/5 flex justify-center items-center">
         {searchIcon}

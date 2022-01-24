@@ -4,13 +4,16 @@ import Header from './components/Header';
 import Results from './components/Results';
 
 export type filtersType = {
-  location: string;
+  location: {
+    city: string;
+    country: string;
+  };
   guests: number;
 };
 
 function App() {
   const [filters, setFilters] = useState<filtersType>({
-    location: 'Helinski, Finland',
+    location: { city: 'Helinski', country: 'Finland' },
     guests: 0,
   });
 
