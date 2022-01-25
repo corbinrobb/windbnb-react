@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className="">
+    <div className="lg:px-8">
       <Header filters={filters} updateFilters={updateFilters} />
       <Results filters={filters} />
       <Footer />

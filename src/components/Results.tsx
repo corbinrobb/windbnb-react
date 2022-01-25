@@ -19,7 +19,7 @@ type ResultsProps = {
 
 function Results({ filters }: ResultsProps) {
   return (
-    <main className="p-3 flex flex-col justify-evenly gap-8">
+    <main className="p-3 lg:p-6 flex flex-col justify-evenly gap-8">
       <div className="flex justify-between">
         <div className="text-xl text-strong">
           Stays in {filters.location.country}
@@ -28,9 +28,11 @@ function Results({ filters }: ResultsProps) {
           {stays.length >= 12 ? '12+' : stays.length} stays
         </div>
       </div>
-      {stays.map((stay: stayType) => {
-        return <Listing {...stay} />;
-      })}
+      <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {stays.map((stay: stayType) => {
+          return <Listing {...stay} />;
+        })}
+      </div>
     </main>
   );
 }

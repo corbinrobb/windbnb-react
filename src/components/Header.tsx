@@ -10,7 +10,7 @@ type HeaderProps = {
 
 function Header({ filters, updateFilters }: HeaderProps) {
   return (
-    <div className="p-4 flex flex-col lg:flex-row justify-between items-center">
+    <div className="p-4 lg:p-6 flex flex-col lg:flex-row justify-between items-center">
       <div className="w-full lg:w-1/5">
         <img src={logo} alt="Windbnb logo" />
       </div>
