@@ -30,7 +30,7 @@ function Results({ filters }: ResultsProps) {
       </div>
       <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {stays.map((stay: stayType) => {
-          return <Listing {...stay} />;
+          return <Listing key={stay.title} {...stay} />;
         })}
       </div>
     </main>
