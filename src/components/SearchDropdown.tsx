@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { filtersType } from '../App';
 
 type SearchDropdownProps = {
@@ -46,6 +46,8 @@ const SearchDropdown = ({
   filters,
   updateFilters,
 }: SearchDropdownProps) => {
+  const [input, setInput] = useState(filters);
+
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50">
       <div className="flex flex-col p-6 bg-white justify-between z-50 h-4/5">
@@ -62,19 +64,34 @@ const SearchDropdown = ({
               Location
               <input
                 className="p-2"
-                value={`${filters.location.city}, ${filters.location.country}`}
+                value={`${input.location.city}`}
+                onChange={(e) =>
+                  setInput((prev) => ({
+                    ...prev,
+                    location: { ...prev.location, city: e.target.value },
+                  }))
+                }
               />
             </label>
             <label className="p-2 flex flex-col w-full uppercase text-sm">
               Guests
-              <input className="p-2" placeholder="Add guests" />
+              <input
+                className="p-2"
+                placeholder="Add guests"
+                onChange={(e) =>
+                  setInput((prev) => ({
+                    ...prev,
+                    guests: Number(e.target.value) || 0,
+                  }))
+                }
+              />
             </label>
           </div>
         </div>
 
         <button
           className="p-3 px-8 border rounded-2xl self-center flex gap-2 text-white"
-          onClick={() => updateFilters(filters)}
+          onClick={() => updateFilters(input)}
           style={{ backgroundColor: '#EB5757E5' }}
         >
           {searchIcon}

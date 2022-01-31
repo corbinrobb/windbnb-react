@@ -13,13 +13,12 @@ export type filtersType = {
 
 function App() {
   const [filters, setFilters] = useState<filtersType>({
-    location: { city: 'Helinski', country: 'Finland' },
+    location: { city: 'Helsinki', country: 'Finland' },
     guests: 0,
   });
 
   const updateFilters = (updatedFilters: filtersType) => {
     setFilters({ ...updatedFilters });
-    return;
   };
 
   return (

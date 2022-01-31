@@ -39,7 +39,11 @@ function Search({ filters, updateFilters }: SearchProps) {
         className="border border-gray-100 rounded-xl flex my-8 lg:my-0 w-4/5 lg:w-1/3 divide-x divide-gray-100 text-sm shadow"
       >
         <input
-          value={`${filters.location.city}, ${filters.location.country}`}
+          value={
+            filters.location.city
+              ? `${filters.location.city}, ${filters.location.country}`
+              : filters.location.country
+          }
           readOnly
           className="py-4 w-2/5 text-center"
         ></input>
