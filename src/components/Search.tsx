@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { filtersType } from '../App';
+import SearchDropdown from './SearchDropdown';
 
 type SearchProps = {
   filters: filtersType;
@@ -24,20 +25,45 @@ const searchIcon = (
   </svg>
 );
 
-function Search({ filters }: SearchProps) {
+function Search({ filters, updateFilters }: SearchProps) {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown((prevState) => !prevState);
+  };
+
   return (
-    <div className="border border-gray-100 rounded-xl flex my-8 lg:my-0 w-4/5 lg:w-1/3 divide-x divide-gray-100 text-sm shadow">
-      <div className="py-4 w-2/5 text-center">
-        {filters.location.city}, {filters.location.country}
+    <>
+      <div
+        onClick={toggleDropdown}
+        className="border border-gray-100 rounded-xl flex my-8 lg:my-0 w-4/5 lg:w-1/3 divide-x divide-gray-100 text-sm shadow"
+      >
+        <input
+          value={
+            filters.location.city
+              ? `${filters.location.city}, ${filters.location.country}`
+              : filters.location.country
+          }
+          readOnly
+          className="py-4 w-2/5 text-center"
+        ></input>
+        <input
+          className="py-4 lg:py-2 w-2/5 text-center"
+          readOnly
+          placeholder="Add Guests"
+        />
+        <button className="py-4 lg:py-2 px-2 w-1/5 flex justify-center items-center">
+          {searchIcon}
+        </button>
       </div>
-      <input
-        className="py-4 lg:py-2 w-2/5 text-center"
-        placeholder="Add Guests"
-      />
-      <button className="py-4 lg:py-2 px-2 w-1/5 flex justify-center items-center">
-        {searchIcon}
-      </button>
-    </div>
+      {showDropdown && (
+        <SearchDropdown
+          toggleDropdown={toggleDropdown}
+          filters={filters}
+          updateFilters={updateFilters}
+        />
+      )}
+    </>
   );
 }
 
